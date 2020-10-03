@@ -83,7 +83,7 @@ const App = () => {
     } else {
       return (
         <View style={styles.indicatorContainer}>
-          <ActivityIndicator size='large' color='black' />
+          <ActivityIndicator size='large' color='gray' />
         </View>
       )
     }
