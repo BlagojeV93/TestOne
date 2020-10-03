@@ -29,10 +29,14 @@ const App = () => {
   // fetching data
   async function fetchData() {
     let res = await fetch(fetchLink(page)).then(res => res.json()).catch(e => alert(e));
-    res = res.map(el => {
-      return { uri: el.owner.avatar_url, filename: Object.keys(el.files)[0] }
-    })
-    setData([...data, ...res])
+    if (res.message) {
+      alert(res.message)
+    } else {
+      res = res.map(el => {
+        return { uri: el.owner.avatar_url, filename: Object.keys(el.files)[0] }
+      })
+      setData([...data, ...res])
+    }
   }
 
   // handling fadeIn and fadeOut animation
@@ -58,12 +62,12 @@ const App = () => {
         <FlatList
           data={data}
           keyExtractor={(item, index) => index.toString()}
-          onEndReachedThreshold={2}
+          onEndReachedThreshold={3}
           onEndReached={() => fetchMoreData()}
           renderItem={({ item }) => (
             <TouchableOpacity
               onPress={() => setUri(item.uri)}
-              activeOpacity={2}
+              activeOpacity={0.5}
               style={styles.cardContainer}
             >
               <View style={styles.imageContainer}>
