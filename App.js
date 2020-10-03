@@ -58,7 +58,7 @@ const App = () => {
         <FlatList
           data={data}
           keyExtractor={(item, index) => index.toString()}
-          onEndReachedThreshold={1}
+          onEndReachedThreshold={2}
           onEndReached={() => fetchMoreData()}
           renderItem={({ item }) => (
             <TouchableOpacity
